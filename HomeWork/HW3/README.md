@@ -74,3 +74,48 @@ Epoch 10
 Evaluation on train - loss: 0.016763  acc: 99.5500%(9955/10000), f1: 0.980132
 Evaluation on dev - loss: 0.036148  acc: 98.8100%(9881/10000), f1: 0.945438
 ~~~    
+
+
+~~~    
+    self.conv1 = nn.Conv1d(feature_dim, 32, kernel_size=10, stride=1)
+    self.conv2 = nn.Conv1d(32, 64, kernel_size=8, stride=1)
+    self.conv3 = nn.Conv1d(64, 64, kernel_size=6, stride=1)
+    self.conv4 = nn.Conv1d(64, 64, kernel_size=4, stride=1)
+
+Epoch 10
+  Evaluation on train - loss: 0.015516  acc: 99.6200%(9962/10000), f1: 0.983096
+  Evaluation on dev - loss: 0.039075  acc: 98.7800%(9878/10000), f1: 0.942723
+~~~    
+
+~~~    
+    self.conv1 = nn.Conv1d(feature_dim, 32, kernel_size=20, stride=1)
+    self.conv2 = nn.Conv1d(32, 64, kernel_size=16, stride=1)
+    self.conv3 = nn.Conv1d(64, 64, kernel_size=12, stride=1)
+    self.conv4 = nn.Conv1d(64, 64, kernel_size=6, stride=1)
+    
+Epoch 10
+  Evaluation on train - loss: 0.016444  acc: 99.5400%(9954/10000), f1: 0.979842
+  Evaluation on dev - loss: 0.031604  acc: 99.0500%(9905/10000), f1: 0.956641
+~~~    
+
+~~~    
+    self.conv1 = nn.Conv1d(feature_dim, 32, kernel_size=18, stride=1)
+    self.conv2 = nn.Conv1d(32, 64, kernel_size=16, stride=1)
+    self.conv3 = nn.Conv1d(64, 64, kernel_size=12, stride=1)
+    self.conv4 = nn.Conv1d(64, 64, kernel_size=6, stride=1)
+
+Epoch 20
+  Evaluation on train - loss: 0.005657  acc: 99.8600%(9986/10000), f1: 0.993865
+  Evaluation on dev - loss: 0.029047  acc: 99.1200%(9912/10000), f1: 0.959891
+~~~    
+
+~~~    
+    self.conv1 = nn.Conv1d(feature_dim, 32, kernel_size=18, stride=1)
+    self.conv2 = nn.Conv1d(32, 64, kernel_size=14, stride=1)
+    self.conv3 = nn.Conv1d(64, 64, kernel_size=10, stride=1)
+    self.conv4 = nn.Conv1d(64, 64, kernel_size=6, stride=1)
+    
+Epoch 100
+  Evaluation on train - loss: 0.011924  acc: 99.7700%(9977/10000), f1: 0.989987
+  Evaluation on dev - loss: 0.077070  acc: 99.0000%(9900/10000), f1: 0.954710
+~~~
