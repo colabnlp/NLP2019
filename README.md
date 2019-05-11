@@ -38,3 +38,48 @@ Worst: 0.877948
 
 Best:  0.935814
 
+~~~
+class KeywordCnn(nn.Module):
+  
+  def __init__(self, num_classes, feature_dim, dropout_prob=0.2):
+    super(KeywordCnn, self).__init__()
+    self.input_bn = nn.BatchNorm1d(feature_dim)
+
+    self.conv1 = nn.Conv1d(feature_dim, 32, kernel_size=10, stride=1)
+    self.conv2 = nn.Conv1d(32, 64, kernel_size=8, stride=1)
+    self.conv3 = nn.Conv1d(64, 64, kernel_size=5, stride=1)
+    
+    
+    self.conv4 = nn.Conv1d(64, 64, kernel_size=3, stride=1)
+    
+    
+    self.dropout = nn.Dropout(dropout_prob)
+    self.fc = nn.Linear(64, num_classes)
+    
+  def forward(self, x, lengths):
+    # Conv1d takes in (batch, channels, seq_len), but raw signal is (batch, seq_len, channels)
+    x = x.permute(0, 2, 1).contiguous()
+    x = self.input_bn(x)
+    x = F.relu(self.conv1(x))
+    x = F.max_pool1d(x, 2)
+    x = F.relu(self.conv2(x))
+    x = F.max_pool1d(x, 2)
+
+    x = F.relu(self.conv3(x))
+    x = F.max_pool1d(x, 2)
+
+    
+    
+    x = F.relu(self.conv4(x))
+    # Global max pooling
+    x = F.max_pool1d(x, x.size(2))
+    x = x.view(-1, 64)
+    x = self.dropout(x) 
+    logit = self.fc(x)
+    return logit
+~~~    
+Epoch 10
+
+Evaluation on train - loss: 0.016763  acc: 99.5500%(9955/10000), f1: 0.980132
+
+Evaluation on dev - loss: 0.036148  acc: 98.8100%(9881/10000), f1: 0.945438
